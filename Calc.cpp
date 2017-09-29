@@ -1,28 +1,26 @@
 #include <iostream>
+#include <stdio.h>
 
-int main(int argc, char argv[]){
-    std::cin >> argc;
-    for (int i = 0; i < argc; i++){
-        std::cin >> argv[i];
-    }
-    for (int i = 0; i < argc; i++){
+int main(int argc, char *argv[]){
+    std::cout << "Count = " << argc - 1 << std::endl;
+    for (int i = 1; i < argc; i++){
         std::cout << "Argv[" << i << "] = " << argv[i] << std::endl;
     }
-    
-    int res = static_cast<int>(argv[0] - 48);
-    for (int i = 1; i < argc; i = i + 2){
-        switch(argv[i]){
+
+    int res = atoi(argv[1]);
+    for (int i = 2; i < argc; i = i + 2){
+        switch(argv[i][0]){
             case '+':
-            res = res + static_cast<int>(argv[i + 1] - 48);
+            res = res + atoi(argv[i + 1]);
             break;
             case '-':
-            res = res - static_cast<int>(argv[i + 1] - 48);
+            res = res - atoi(argv[i + 1]);
             break;
             case '*':
-            res = res * static_cast<int>(argv[i + 1] - 48);
+            res = res * atoi(argv[i + 1]);
             break;
             case '/':
-            res = res / static_cast<int>(argv[i + 1] - 48);
+            res = res / atoi(argv[i + 1]);
             break;
         }
     }
