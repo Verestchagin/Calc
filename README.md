@@ -14,11 +14,7 @@ Vvedite pervoe chislo
 8
 Vvedite vtoroe chislo
 0
-Nevozmozhnoe deistvie
-Vvedite vtoroe chislo
-2
-Result: 4
-
+Na 0 delit nelzya
 
 Viberete operaciyu [+, -, *, /, %, ^, !, &, |, <, >]
 %
