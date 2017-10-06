@@ -1,18 +1,92 @@
-// ConsoleApplication1.cpp: определяет точку входа для консольного приложения.
-//
-
-//#include <stdfax.h>
 #include <iostream>
 #include <cmath>
 #include <cctype>
 #include <cstdlib>
 using namespace std;
 
+void sum(int a, int b, char si[] = "") {
+	cout << "Result: " << a + b << endl;
+	
+	si[0] = '0';
+}
+
+void sub(int a, int b, char si[] = "") {
+	si[0] = '0';
+	cout << "Result: " << a - b << endl;
+}
+
+void mul(int a, int b, char si[] = "") {
+	si[0] = '0';
+	cout << "Result: " << a * b << endl;
+}
+
+void div(int a, int b, char si[] = "") {
+	si[0] = '0';
+	if (b != 0) {
+		cout << "Result: " << a / b << endl;
+	}
+	else {
+		cout << "Na 0 delit nelzya" << endl;
+	}
+}
+
+void mod(int a, int b, char si[] = "") {
+	if (b != 0) {
+		si[0] = '0';
+		cout << "Result: " << a % b << endl;
+	}
+	else {
+		cout << "Na 0 delit nelzya" << endl;
+	}
+}
+
+void pow(int a, int b, int res1, char si[] = "") {
+	si[0] = '0';
+	if (b == 0) {
+		cout << "Result: " << 1 << endl;
+	}
+	else {
+		res1 = 1;
+		for (int i = 0; i < b; ++i) {
+			res1 = res1 * a;
+		}
+		cout << "Result: " << res1 << endl;
+	}
+}
+
+void not(int a, char si[] = "") {
+	si[0] = '0';
+	cout << "Result: " << a * (-1) << endl;
+}
+
+void andd(int a, int b, int res, char si[] = "") {
+	si[0] = '0';
+	res = a & b;
+	cout << "Result: " << res << endl;
+}
+
+void orr(int a, int b, int res, char si[] = "") {
+	res = a | b;
+	si[0] = '0';
+	cout << "Result: " << res << endl;
+}
+
+void rol(int a, int b, int res, char si[] = "") {
+	res = a << 1;
+	si[0] = '0';
+	cout << "Result: " << res << endl;
+}
+
+void ror(int a, int b, int res, char si[] = "") {
+	res = a >> 1;
+	si[0] = '0';
+	cout << "Result: " << res << endl;
+}
 
 int main()
 {
 	char op[] = "";
-	int res,b,a;
+	int itog = 0, b, a;
 	char a1[] = "", b1[] = "";
 	bool f1 = false, f2 = false;
 	while (true) {
@@ -23,7 +97,7 @@ int main()
 		while (f1 == false) {
 			cout << "Vvedite pervoe chislo" << endl;
 			cin >> a1;
-			if (isdigit(a1[0])) {
+			if (isdigit(a1[0]) || (isdigit(a1[1]))) {
 				a = atoi(a1);
 				f1 = true;
 				break;
@@ -36,7 +110,7 @@ int main()
 			while (f2 == false) {
 				cout << "Vvedite vtoroe chislo" << endl;
 				cin >> b1;
-				if (isdigit(b1[0])) {
+				if (isdigit(b1[0]) || (isdigit(b1[1]))) {
 					b = atoi(b1);
 					f2 = true;
 					break;
@@ -46,113 +120,44 @@ int main()
 				}
 			}
 		}
+		f1 = false;
+		f2 = false;
 		switch (op[0]) {
 			case '+':
-				res = a + b;
-				f1 = false;
-				f2 = false;
-				op[0] = '0';
-				cout << "Result: " << res << endl;
+				sum(a, b, op);
 				break;
 			case '-':
-				res = a - b;
-				f1 = false;
-				f2 = false;
-				op[0] = '0';
-				cout << "Result: " << res << endl;
+				sub(a, b, op);
 				break;
 			case '*':
-				res = a * b;
-				f1 = false;
-				f2 = false;
-				op[0] = '0';
-				cout << "Result: " << res << endl;
+				mul(a, b, op);
 				break;
 			case '/':
-				if (b != 0) {
-					float a1 = a, b1 = b, res1;
-					res1 = a1 / b1;
-					f1 = false;
-					f2 = false;
-					op[0] = '0';
-					cout << "Result: " << res1 << endl;
-					break;
-				}
-				else {
-					cout << "Nevozmozhnoe deistvie" << endl;
-					f2 = false;
-					break;
-				}
+				div(a, b, op);
+				break;
 			case '%':
-				if (b != 0) {
-					res = a % b;
-					f1 = false;
-					f2 = false;
-					op[0] = '0';
-					cout << "Result: " << res << endl;
-					break;
-				}
-				else {
-					cout << "Nevozmozhnoe deistvie" << endl;
-					f2 = false;
-					break;
-				}
+				mod(a, b, op);
+				break;			
 			case '^':
-				if (b == 0) {
-					res = 1;
-					f1 = false;
-					f2 = false;
-					op[0] = '0';
-					break;
-				}
-				else {
-					res = 1;
-					for (int i = 0; i < b; ++i) {
-						res = res * a;
-					}
-				}
-				f1 = false;
-				f2 = false;
-				op[0] = '0';
-				cout << "Result: " << res << endl;
+				pow(a, b, itog, op);
 				break;
 			case '!':
-				res = a * (-1);
-				f1 = false;
-				f2 = false;
-				op[0] = '0';
-				cout << "Result: " << res << endl;
+				not(a, op);
 				break;
 			case '&':
-				res = a & b; 
-				f1 = false;
-				f2 = false;
-				op[0] = '0';
-				cout << "Result: " << res << endl;
+				andd(a, b, itog, op);
 				break;
 			case '|':
-				res = a | b;
-				f1 = false;
-				f2 = false;
-				op[0] = '0';
-				cout << "Result: " << res << endl;
+				orr(a, b, itog, op);
 				break;
 			case '<':
-				res = a << 1;
-				f1 = false;
-				f2 = false;
-				op[0] = '0';
-				cout << "Result: " << res << endl;
+				rol(a, b, itog, op);
 				break;
 			case '>':
-				res = a >> 1;
-				f1 = false;
-				f2 = false;
-				op[0] = '0';
-				cout << "Result: " << res << endl;
+				ror(a, b, itog, op);
 				break;
 		}
+	
 	}
-    return 0;
+	return 0;
 }
-
