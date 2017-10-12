@@ -6,7 +6,7 @@ using namespace std;
 
 void sum(int a, int b, char si[] = "") {
 	cout << "Result: " << a + b << endl;
-	
+
 	si[0] = '0';
 }
 
@@ -21,9 +21,10 @@ void mul(int a, int b, char si[] = "") {
 }
 
 void div(int a, int b, char si[] = "") {
+	float af = a, bf = b;
 	si[0] = '0';
 	if (b != 0) {
-		cout << "Result: " << a / b << endl;
+		cout << "Result: " << af / bf << endl;
 	}
 	else {
 		cout << "Na 0 delit nelzya" << endl;
@@ -40,21 +41,29 @@ void mod(int a, int b, char si[] = "") {
 	}
 }
 
-void pow(int a, int b, int res1, char si[] = "") {
+void pow(int a, int b, float res1, char si[] = "") {
+	float af = a, bf = b;
 	si[0] = '0';
-	if (b == 0) {
+	if (bf == 0) {
 		cout << "Result: " << 1 << endl;
 	}
-	else {
+	if (bf > 0) {
 		res1 = 1;
-		for (int i = 0; i < b; ++i) {
-			res1 = res1 * a;
+		for (int i = 0; i < bf; ++i) {
+			res1 = res1 * af;
+		}
+		cout << "Result: " << res1 << endl;
+	}
+	if (b < 0){
+		res1 = 1;
+		for (int i = 0; i > bf; --i) {
+			res1 = res1 / af;
 		}
 		cout << "Result: " << res1 << endl;
 	}
 }
 
-void not(int a, char si[] = "") {
+void negative(int a, char si[] = "") {
 	si[0] = '0';
 	cout << "Result: " << a * (-1) << endl;
 }
@@ -89,6 +98,7 @@ int main()
 	int itog = 0, b, a;
 	char a1[] = "", b1[] = "";
 	bool f1 = false, f2 = false;
+	float itogf = 1;
 	while (true) {
 		while ((op[0] != '+') && (op[0] != '-') && (op[0] != '*') && (op[0] != '/') && (op[0] != '%') && (op[0] != '^') && (op[0] != '!') && (op[0] != '&') && (op[0] != '|') && (op[0] != '<') && (op[0] != '>')) {
 			cout << "Viberete operaciyu [+, -, *, /, %, ^, !, &, |, <, >]" << endl;
@@ -123,41 +133,41 @@ int main()
 		f1 = false;
 		f2 = false;
 		switch (op[0]) {
-			case '+':
-				sum(a, b, op);
-				break;
-			case '-':
-				sub(a, b, op);
-				break;
-			case '*':
-				mul(a, b, op);
-				break;
-			case '/':
-				div(a, b, op);
-				break;
-			case '%':
-				mod(a, b, op);
-				break;			
-			case '^':
-				pow(a, b, itog, op);
-				break;
-			case '!':
-				not(a, op);
-				break;
-			case '&':
-				andd(a, b, itog, op);
-				break;
-			case '|':
-				orr(a, b, itog, op);
-				break;
-			case '<':
-				rol(a, b, itog, op);
-				break;
-			case '>':
-				ror(a, b, itog, op);
-				break;
+		case '+':
+			sum(a, b, op);
+			break;
+		case '-':
+			sub(a, b, op);
+			break;
+		case '*':
+			mul(a, b, op);
+			break;
+		case '/':
+			div(a, b, op);
+			break;
+		case '%':
+			mod(a, b, op);
+			break;
+		case '^':
+			pow(a, b, itogf, op);
+			break;
+		case '!':
+			negative(a, op);
+			break;
+		case '&':
+			andd(a, b, itog, op);
+			break;
+		case '|':
+			orr(a, b, itog, op);
+			break;
+		case '<':
+			rol(a, b, itog, op);
+			break;
+		case '>':
+			ror(a, b, itog, op);
+			break;
 		}
-	
+
 	}
 	return 0;
 }
