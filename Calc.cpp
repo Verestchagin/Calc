@@ -5,9 +5,8 @@
 using namespace std;
 
 void sum(int a, int b, char si[] = "") {
-	cout << "Result: " << a + b << endl;
-
 	si[0] = '0';
+	cout << "Result: " << a + b << endl;
 }
 
 void sub(int a, int b, char si[] = "") {
@@ -27,7 +26,7 @@ void div(int a, int b, char si[] = "") {
 		cout << "Result: " << af / bf << endl;
 	}
 	else {
-		cout << "Na 0 delit nelzya" << endl;
+		cerr << "Na 0 delit nelzya" << endl;
 	}
 }
 
@@ -37,7 +36,7 @@ void mod(int a, int b, char si[] = "") {
 		cout << "Result: " << a % b << endl;
 	}
 	else {
-		cout << "Na 0 delit nelzya" << endl;
+		cerr << "Na 0 delit nelzya" << endl;
 	}
 }
 
@@ -113,7 +112,7 @@ int main()
 				break;
 			}
 			else {
-				cout << "Neobhodimo vvesti chislo" << endl;
+				cerr << "Neobhodimo vvesti chislo" << endl;
 			}
 		}
 		if ((op[0] != '!') && (op[0] != '<') && (op[0] != '>')) {
@@ -126,7 +125,7 @@ int main()
 					break;
 				}
 				else {
-					cout << "Neobhodimo vvesti chislo" << endl;
+					cerr << "Neobhodimo vvesti chislo" << endl;
 				}
 			}
 		}
