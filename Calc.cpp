@@ -54,7 +54,7 @@ void pow(int a, int b, float res1, char si[] = "") {
 		}
 		cout << "Result: " << res1 << endl;
 	}
-	if (b < 0){
+	if (bf < 0){
 		res1 = 1;
 		for (int i = 0; i > bf; --i) {
 			res1 = res1 / af;
