@@ -76,6 +76,7 @@ int main(int argc,char*argv[]) {
 	}
 	for (int i = 0; i < strlen(op); i++){
 		if (op[i] == '+'){
+			count1++;
 			chisla[i] = chisla[i] + chisla[i + 1];
 			for (int j = i + 1; j < countn - 1; j++){
 				chisla[j] = chisla[j + 1];
